@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+:root {
+--bg-color: #0F0F0F;
+--header-bg-color: #212121;
+--table-bg-color: #212121;
+--standard-text-color: #EAEBEA;
+
+--status-error-color: #A50104;
+--status-warning-color: #efb366;
+--status-ok-color: #6A994E;
+--status-paused-color: #457b9d;
+--status-unusual-color: #ee8959; 
+}
+
+* {
+margin: 0;
+font-family: 'Roboto', sans-serif;
+color: var(--standard-text-color);
+}
+
+body{
+background: var(--bg-color);
+/* overflow: hidden; */
+}
+
+.headline-container {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin: 15px;
+}
+
+.headline-container h1, .headline-container .status-overview{
+display: inline-block;
+vertical-align: middle;
+}
+
+.headline-container .status-overview {
+padding: 15px;
+float: right;
+}
+
+.headline-container h1 {
+float: left;
+padding: 15px;
+font-weight: bold;
+}
+
+table, .headline-container h1, #uebersicht .data-container, #dienste .data-container {
+
+background: var(--table-bg-color);
+border-radius: 5px;
+}
+
+.data-container iframe{
+padding: 10px;
+margin: 0 auto;
+}
+
+table, td{
+width: 100%;
+}
+
+.data-container {
+font-size: 0.85rem;
+margin: 0 15px;
+display: grid;
+gap: 20px;
+}
+
+.data-container table {
+display: inline-block;
+grid-row: 1;
+}
+
+td {
+padding: 15px;
+}
+
+.status {
+text-align: center;
+}
+
+.status-text {
+display: inline-block;
+padding: 5px;
+}
+
+.status-error{
+background: var(--status-error-color);
+}
+
+.status-warning {
+background: var(--status-warning-color);
+}
+
+.status-ok{
+background: var(--status-ok-color);
+}
+
+.status-paused{
+background: var(--status-paused-color);
+}
+
+.status-unusual{
+background: var(--status-unusual-color);
+}
+
+.status-overview{
+font-weight: bold;
+font-size: 2rem;
+}
+
+.overview-error {
+color: var(--status-error-color);
+}
+
+.overview-warning {
+color: var(--status-warning-color);
+}
+
+.overview-ok {
+color: var(--status-ok-color);
+}
+
+.overview-paused {
+color: var(--status-paused-color);
+}
+
+.overview-unusual {
+color: var(--status-unusual-color);
+}
