@@ -31,9 +31,13 @@ align-items: center;
 margin: 15px;
 }
 
-.headline-container h1, .headline-container .status-overview{
+.headline-container h1, .headline-container .status-overview, .headline-container .status-message{
 display: inline-block;
 vertical-align: middle;
+}
+
+.headline-container .status-message {
+    font-weight: bold;
 }
 
 .headline-container .status-overview {
