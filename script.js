@@ -12,10 +12,11 @@ function setContents(groupID) {
                 // console.log(data);
                 setData(data.sensors);
         });
+
 }
 
 function setData(json){
-        if (Object.keys(json).length <= 0) {
+    if (Object.keys(json).length <= 0) {
 		console.log("Not creating table, json length is " + Object.keys(json).length + "!");
 		return;
 	}
@@ -69,6 +70,24 @@ function setData(json){
 	overviewText += "<span class='overview-paused'>" + countPaused + "</span> | ";
 	overviewText += "<span class='overview-unusual'>" + countUnusual + "</span> | " + total;
 	$(".status-overview").html(overviewText);
+
+	let statusMessageText = "";
+	if (countError == 0) {
+		statusMessageText = "Alles läuft! - Geh dir 'nen Kaffee holen!";
+	} 
+	else if (countError == total) {
+		statusMessageText = "Es ist vorbei, geh heim!";
+	}
+	else if (countError >= 15) {
+		statusMessageText = "Hallo?? Jemand da?!?";
+	}
+	else if (countError >= 10) {
+		statusMessageText = "Erfordert Aufmerksamkeit!!!";
+	}
+	else if (countError >= 5) {
+		statusMessageText = "Erfordert Aufmerksamkeit";
+	}
+	$(".status-message").html(statusMessageText);
 }
 
 function getAdditionalStatusClass(status_raw) {
