@@ -12,7 +12,6 @@ function setContents(groupID) {
                 // console.log(data);
                 setData(data.sensors);
         });
-
 }
 
 function setData(json){
