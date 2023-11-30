@@ -12,13 +12,15 @@ function setContents(groupID) {
                 // console.log(data);
                 setData(data.sensors);
         });
+
 }
 
 function setData(json){
-        if (Object.keys(json).length <= 0) {
+    if (Object.keys(json).length <= 0) {
 		console.log("Not creating table, json length is " + Object.keys(json).length + "!");
 		return;
 	}
+	console.log("Setting Table...");
 	let content = "<table>";
 	let total = 0;
 	let countOK = 0;
@@ -61,36 +63,57 @@ function setData(json){
                 content += "</tr>";
         });
 	content += "</table>";
-        $(".data-container").html(content);
+    $(".data-container").html(content);
+	console.log("Done!");
 
+	console.log("Setting Status Overview...");
 	let overviewText = "<span class='overview-error'>" + countError + "</span> | ";
 	overviewText += "<span class='overview-warning'>" + countWarning + "</span> |  "
 	overviewText += "<span class='overview-ok'>" + countOK + "</span> |  ";
 	overviewText += "<span class='overview-paused'>" + countPaused + "</span> | ";
 	overviewText += "<span class='overview-unusual'>" + countUnusual + "</span> | " + total;
 	$(".status-overview").html(overviewText);
+	console.log("Done!");
+
+	console.log("Setting Status Message...");
+	let statusMessageText = "";
+	if (countError == 0) {
+		statusMessageText = "Alles läuft! - Geh dir 'nen Kaffee holen!";
+	} 
+	else if (countError == total) {
+		statusMessageText = "Es ist vorbei, geh heim!";
+	}
+	else if (countError >= 15) {
+		statusMessageText = "Hallo?? Jemand da?!?";
+	}
+	else if (countError >= 10) {
+		statusMessageText = "Erfordert Aufmerksamkeit!!!";
+	}
+	else if (countError >= 5) {
+		statusMessageText = "Erfordert Aufmerksamkeit";
+	}
+	else {
+		statusMessageText = "Fast perfekt...";
+	}
+	$(".status-message").html(statusMessageText);
+	console.log("Done!");
 }
 
 function getAdditionalStatusClass(status_raw) {
 	switch (status_raw) {
                 case 3:
                         return STATUS_OK;
-                        break;
                 case 4:
-			return STATUS_WARNING;
-                        break;
+						return STATUS_WARNING;
                 case 10:
                         return STATUS_UNUSUAL;
-                        break;
                 case 5:
-			return STATUS_ERROR;
-                        break;
+						return STATUS_ERROR;
                 case 7:
                 case 8:
                 case 9:
                 case 12:
                         return STATUS_PAUSED;
-                        break;
                 default:
                         return "";
 	}
